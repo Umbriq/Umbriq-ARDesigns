@@ -4,8 +4,9 @@
       <meta charset="utf-8">
       <title>Embryo AR Experience</title>
       <meta name="description" content="Embryo Augmented Reality Experience">
-      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-      <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+      <!-- Updated A-Frame and AR.js to the latest versions -->
+      <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+      <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>
       <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
       <style>
@@ -52,14 +53,19 @@
         <button id="start-button">Start AR Experience</button>
       </div>
 
-      <a-scene id="ar-scene" embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+      <a-scene id="ar-scene" embedded vr-mode-ui="enabled: false" 
+               arjs="sourceType: webcam; debugUIEnabled: false; 
+                     detectionMode: mono; trackingMethod: best;">
         <a-assets>
           <a-asset-item id="test_embryo" src="https://raw.githubusercontent.com/Umbriq/Umbriq-ARDesigns/main/assets/IronMan.obj"></a-asset-item>
           <a-asset-item id="test_embryo-mtl" src="https://raw.githubusercontent.com/Umbriq/Umbriq-ARDesigns/main/assets/IronMan.mtl"></a-asset-item>
         </a-assets>
 
-        <a-marker id="animated-marker" type="barcode" value="4">
-          <a-obj-model src="#test_embryo" mtl="#test_embryo-mtl" scale="0.1 0.1 0.1" position="-0.8 -0.8 0" rotation="0 -90 90"></a-obj-model>
+        <!-- Updated marker with smoothing properties -->
+        <a-marker id="animated-marker" preset="custom" type="pattern" url="path/to/your/marker.patt"
+                  smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+          <a-obj-model src="#test_embryo" mtl="#test_embryo-mtl" 
+                       scale="0.1 0.1 0.1" position="-0.8 -0.8 0" rotation="0 -90 90"></a-obj-model>
         </a-marker>
 
         <a-entity camera></a-entity>
